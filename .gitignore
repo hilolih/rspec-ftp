@@ -55,3 +55,5 @@ build/
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 >>>>>>> 2ab5db027f39fb279ea22d281c388d427491530c
+*.swp
+vendor

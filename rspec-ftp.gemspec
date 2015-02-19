@@ -1,16 +1,15 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rspec/ftp/version'
+#lib = File.expand_path('../lib', __FILE__)
+#$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "rspec-ftp"
-  spec.version       = Rspec::Ftp::VERSION
+  spec.version       = "0.0.1"
   spec.authors       = ["hiroshi shimoda"]
   spec.email         = ["hilolih@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Test FTP Protocol with Rspec}
+  spec.description   = %q{Test FTP Protocol with Rspec}
+  spec.homepage      = "https://github.com/hilolih/rspec-ftp"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -20,5 +19,8 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "pry-doc"
+  spec.add_development_dependency "pry-byebug"
+  spec.add_dependency "rspec", '>= 2.9'
 end
