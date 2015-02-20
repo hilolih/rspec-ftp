@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe "rspec-ftp" do
+
   before do
     @ftp = double("FTP")
     allow(Net::FTP).to receive(:new) do
@@ -18,4 +19,8 @@ describe "rspec-ftp" do
     expect('example.com').not_to be_accessible.user('hoge').pass('hoge')
   end
 
+  it "raise error to not be accessible" do
+    allow(@ftp).to receive(:login).and_raise( "err" )
+    expect('example.com').not_to be_accessible.user('hoge').pass('hoge')
+  end
 end
