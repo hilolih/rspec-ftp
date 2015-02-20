@@ -1,6 +1,7 @@
 RSpec::Matchers.define :be_accessible do
   match do |server|
-    true
+    @ftp = Net::FTP.new
+    @ftp.login( server, @user, @pass )
   end
   
   chain :user do |user|
