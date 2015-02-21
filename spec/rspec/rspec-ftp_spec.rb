@@ -1,16 +1,14 @@
 require "spec_helper"
 
-describe "rspec-ftp" do
+describe "#accessible" do
 
   before do
-    @ftp = double("FTP")
-    allow(Net::FTP).to receive(:new) do
-      @ftp
-    end
+    @ftp = double("FTP", :passive => nil )
+    allow(Net::FTP).to receive(:new) { @ftp }
   end
 
   it "can login valid user and password" do
-    allow(@ftp).to receive(:login).and_return( true )
+    allow(@ftp).to receive(:login) {|ftp| true }
     expect('example.com').to be_accessible.user('user').pass('pass')
   end
 
@@ -22,5 +20,15 @@ describe "rspec-ftp" do
   it "raise error to not be accessible" do
     allow(@ftp).to receive(:login).and_raise( "err" )
     expect('example.com').not_to be_accessible.user('hoge').pass('hoge')
+  end
+
+  it "activemode" do
+    allow(@ftp).to receive(:login) {|ftp| true }
+    expect('example.com').to be_accessible.user('user').pass('pass').active
+  end
+
+  it "passivemode" do
+    allow(@ftp).to receive(:login) {|ftp| true }
+    expect('example.com').to be_accessible.user('user').pass('pass').passive
   end
 end
