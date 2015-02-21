@@ -4,7 +4,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "rspec-ftp"
-  spec.version       = "0.0.1"
+  spec.version       = "0.0.2"
   spec.authors       = ["hiroshi shimoda"]
   spec.email         = ["hilolih@gmail.com"]
   spec.summary       = %q{Test FTP Protocol with Rspec}
