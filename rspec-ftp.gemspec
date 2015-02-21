@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry-byebug"
   spec.add_dependency "rspec", '>= 2.9'
   spec.add_dependency "rspec-mocks"
+  spec.add_dependency "timeout"
 end
