@@ -18,7 +18,20 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+~~~ruby
+it "enable to login" do
+   expect("server.com").to be_accessible.user("username").pass("password")
+end
+
+it "enable to login on active mode" do
+   expect("server.com").to be_accessible.user("username").pass("password").active
+end
+
+it "enable to login on passive mode" do
+   expect("server.com").to be_accessible.user("username").pass("password").passive
+end
+
+~~~
 
 ## Contributing
 
