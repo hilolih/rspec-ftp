@@ -31,7 +31,21 @@ it "enable to login on passive mode" do
    expect("server.com").to be_accessible.user("username").pass("password").passive
 end
 
+it 'check chroot enabled' do
+  expect('server.com').to be_chroot.user('ftpuser').pass('supersecret')
+end
 
+it 'check writable with active mode' do
+  expect('server.com').to be_writable.user('ftpuser').pass('supersecret').active
+end
+
+it 'check not writable with passive mode' do
+  expect('server.com').to_not be_writable.user('ftpuser').pass('supersecret').passive
+end
+
+it 'check removable' do
+  expect('server.com').to be_removable.user('ftpuser').pass('supersecret')
+end
 ~~~
 
 ## Contributing
