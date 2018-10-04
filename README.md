@@ -31,6 +31,7 @@ it "enable to login on passive mode" do
    expect("server.com").to be_accessible.user("username").pass("password").passive
 end
 
+
 ~~~
 
 ## Contributing
