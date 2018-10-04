@@ -13,7 +13,7 @@ services:
         - PASV_MAX=21210
       ports:
         - "21:21"
-        - "65535-65535:65535-65535"
+        - "21200-21210:21200-21210"
     rspec:
       image: ruby:latest
       build: ./spec/docker/rspec
