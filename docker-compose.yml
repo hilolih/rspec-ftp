@@ -1,0 +1,23 @@
+version: '2'
+services:
+    vsftpd-server:
+      build: ./spec/docker/vsftpd
+      container_name: vsftpd-server
+      environment:
+        - FTP_USER=ftpuser
+        - FTP_PASS=supersecret
+        - ONLY_UPLOAD=NO
+        - PASV_ENABLE=YES
+        - PASV_ADDRESS=127.0.0.1
+        - PASV_MIN=21200
+        - PASV_MAX=21210
+      ports:
+        - "21:21"
+        - "65535-65535:65535-65535"
+    rspec:
+      image: ruby:latest
+      build: ./spec/docker/rspec
+      container_name: rspec
+      volumes:
+        - .:/work
+      command: tail -f /dev/null

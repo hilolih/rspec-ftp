@@ -57,3 +57,4 @@ build/
 >>>>>>> 2ab5db027f39fb279ea22d281c388d427491530c
 *.swp
 vendor
+.envrc
