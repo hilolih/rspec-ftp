@@ -1,7 +1,7 @@
 version: '2'
 services:
     vsftpd-server:
-      build: ./spec/docker/vsftpd
+      image: fikipollo/vsftpd
       container_name: vsftpd-server
       environment:
         - FTP_USER=ftpuser
