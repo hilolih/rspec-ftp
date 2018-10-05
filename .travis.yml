@@ -6,6 +6,8 @@ before_install:
 install:
 before_script:
 script:
-  - docker-compose exec rspec rspec
+  - docker-compose exec rspec-ruby25 rspec
+  - docker-compose exec rspec-ruby24 rspec
+  - docker-compose exec rspec-ruby23 rspec
 after_script:
 notifications:

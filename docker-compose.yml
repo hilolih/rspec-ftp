@@ -14,10 +14,24 @@ services:
       ports:
         - "21:21"
         - "21200-21210:21200-21210"
-    rspec:
+    rspec-ruby25:
       image: ruby:latest
       build: ./spec/docker/rspec
-      container_name: rspec
+      container_name: rspec-ruby25
+      volumes:
+        - .:/work
+      command: tail -f /dev/null
+    rspec-ruby24:
+      image: ruby:2.4
+      build: ./spec/docker/rspec
+      container_name: rspec-ruby24
+      volumes:
+        - .:/work
+      command: tail -f /dev/null
+    rspec-ruby23:
+      image: ruby:2.3
+      build: ./spec/docker/rspec
+      container_name: rspec-ruby23
       volumes:
         - .:/work
       command: tail -f /dev/null
