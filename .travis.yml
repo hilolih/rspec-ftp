@@ -1,4 +1,9 @@
 sudo: required
+env:
+  matrix:
+    - TEST_TARGET=rspec-ruby25
+    - TEST_TARGET=rspec-ruby24
+    - TEST_TARGET=rspec-ruby23
 services:
   - docker
 before_install:
@@ -6,8 +11,6 @@ before_install:
 install:
 before_script:
 script:
-  - docker-compose exec rspec-ruby25 rspec
-  - docker-compose exec rspec-ruby24 rspec
-  - docker-compose exec rspec-ruby23 rspec
+  - docker-compose exec ${TEST_TARGET} rspec
 after_script:
 notifications:
