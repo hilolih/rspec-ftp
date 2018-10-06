@@ -1,3 +1,20 @@
-language: ruby
-rvm:
-  - 2.1.1
+sudo: required
+matrix:
+  include:
+  - name: "Ruby 2.5"
+    env: TEST_TARGET=rspec-ruby25
+  - name: "Ruby 2.4"
+    env: TEST_TARGET=rspec-ruby24
+  - name: "Ruby 2.3"
+    env: TEST_TARGET=rspec-ruby23
+services:
+  - docker
+before_install:
+  - docker-compose build ${TEST_TARGET}
+  - docker-compose up -d
+install:
+before_script:
+script:
+  - docker-compose exec ${TEST_TARGET} rspec
+after_script:
+notifications:

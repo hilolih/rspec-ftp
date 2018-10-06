@@ -1,12 +1,10 @@
-TIMEOUT = 3
-
 RSpec::Matchers.define :be_accessible do
   match do |server|
     begin
-      timeout(TIMEOUT){
-        @ftp = Net::FTP.new( server )
+      Timeout.timeout(TIMEOUT){
+        @ftp = Net::FTP.new(server)
         @passive ||= false
-        @ftp.login( @user, @pass ) do |ftp|
+        @ftp.login(@user, @pass) do |ftp|
           ftp.pwd
         end
       }
@@ -32,4 +30,3 @@ RSpec::Matchers.define :be_accessible do
   end
 
 end
-
