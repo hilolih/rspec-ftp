@@ -1,4 +1,5 @@
 require 'net/ftp'
+require 'securerandom'
 
 require 'ext/ftp'
 require 'rspec-ftp/be_accessible'
