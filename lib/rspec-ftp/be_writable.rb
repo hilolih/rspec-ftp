@@ -1,9 +1,11 @@
 RSpec::Matchers.define :be_writable do
   match do |server|
+    t = TestFile.new(@test_filename)
+    dummy_string = t.contents
+    dummy_filename = t.name
+
     Timeout.timeout(TIMEOUT){
       begin
-        dummy_string = SecureRandom.hex(32)
-        dummy_filename = 'rspec-ftp_' + dummy_string + '.txt'
         Net::FTP.open(server) do |ftp|
           ftp.passive = @passive
           ftp.login(@user, @pass)
@@ -12,6 +14,7 @@ RSpec::Matchers.define :be_writable do
           ftp.retrlines('RETR ' + dummy_filename) do |block|
             filedata << block
           end
+          ftp.delete(dummy_filename)
           filedata == dummy_string ? true : false
         end
       rescue
@@ -26,6 +29,10 @@ RSpec::Matchers.define :be_writable do
 
   chain :pass do |pass|
     @pass = pass
+  end
+
+  chain :test_filename do |test_filename|
+    @test_filename = test_filename
   end
 
   chain :active do

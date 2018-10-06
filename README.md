@@ -39,12 +39,22 @@ it 'check writable with active mode' do
   expect('server.com').to be_writable.user('ftpuser').pass('supersecret').active
 end
 
-it 'check not writable with passive mode' do
-  expect('server.com').to_not be_writable.user('ftpuser').pass('supersecret').passive
+it 'check writable with passive mode' do
+  expect('server.com').to be_writable.user('ftpuser').pass('supersecret').passive
+end
+
+# If no value is specified for file_name, a file with automatically generated file name will be created.
+it 'check writable with passive mode and use test_filename' do
+  expect('server.com').to be_writable.user('ftpuser').pass('supersecret').passive.test_filename('foobar')
 end
 
 it 'check removable' do
   expect('server.com').to be_removable.user('ftpuser').pass('supersecret')
+end
+
+# If no value is specified for file_name, a file with automatically generated file name will be created.
+it 'check removable and use test_filename' do
+  expect('server.com').to be_removable.user('ftpuser').pass('supersecret').test_filename('foobar')
 end
 ~~~
 

@@ -52,10 +52,21 @@ describe '#be_writable (real server)' do
   it 'check writable with passive mode' do
     expect('vsftpd-server').to be_writable.user('ftpuser').pass('supersecret').passive
   end
+
+  it 'check writable with passive mode and test_filename' do
+    expect('vsftpd-server').to be_writable.user('ftpuser').pass('supersecret').\
+                               passive.\
+                               test_filename('foobar')
+  end
 end 
 
 describe '#be_removable (real server)' do
   it 'check removable' do
     expect('vsftpd-server').to be_removable.user('ftpuser').pass('supersecret')
+  end
+
+  it 'check removable with test_filename' do
+    expect('vsftpd-server').to be_removable.user('ftpuser').pass('supersecret').\
+                               test_filename('foobar')
   end
 end
