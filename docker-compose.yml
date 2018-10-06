@@ -8,12 +8,15 @@ services:
         - FTP_PASS=supersecret
         - ONLY_UPLOAD=NO
         - PASV_ENABLE=YES
-        - PASV_ADDRESS=127.0.0.1
+        - PASV_ADDRESS=172.26.0.6
         - PASV_MIN=21200
         - PASV_MAX=21210
       ports:
         - "21:21"
         - "21200-21210:21200-21210"
+      networks:
+        my_net:
+          ipv4_address: 172.26.0.6
     rspec-ruby25:
       image: ruby:latest
       build: ./spec/docker/rspec
@@ -21,6 +24,9 @@ services:
       volumes:
         - .:/work
       command: tail -f /dev/null
+      networks:
+        my_net:
+          ipv4_address: 172.26.0.5
     rspec-ruby24:
       image: ruby:2.4
       build: ./spec/docker/rspec
@@ -28,6 +34,9 @@ services:
       volumes:
         - .:/work
       command: tail -f /dev/null
+      networks:
+        my_net:
+          ipv4_address: 172.26.0.4
     rspec-ruby23:
       image: ruby:2.3
       build: ./spec/docker/rspec
@@ -35,3 +44,24 @@ services:
       volumes:
         - .:/work
       command: tail -f /dev/null
+      networks:
+        my_net:
+          ipv4_address: 172.26.0.3
+    ftp-client:
+      image: ftp
+      container_name: ftp-client
+      working_dir: /work
+      volumes:
+        - .:/work
+      command: tail -f /dev/null
+      networks:
+        my_net:
+          ipv4_address: 172.26.0.2
+networks:
+  my_net:
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 172.26.0.0/16
+         gateway: 172.26.0.1

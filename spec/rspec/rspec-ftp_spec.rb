@@ -49,8 +49,8 @@ describe '#be_writable (real server)' do
     expect('vsftpd-server').to be_writable.user('ftpuser').pass('supersecret').active
   end
 
-  it 'check not writable with passive mode' do
-    expect('vsftpd-server').to_not be_writable.user('ftpuser').pass('supersecret').passive
+  it 'check writable with passive mode' do
+    expect('vsftpd-server').to be_writable.user('ftpuser').pass('supersecret').passive
   end
 end 
 
