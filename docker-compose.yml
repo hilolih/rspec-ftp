@@ -47,16 +47,16 @@ services:
       networks:
         my_net:
           ipv4_address: 172.26.0.3
-    ftp-client:
-      image: ftp
-      container_name: ftp-client
-      working_dir: /work
-      volumes:
-        - .:/work
-      command: tail -f /dev/null
-      networks:
-        my_net:
-          ipv4_address: 172.26.0.2
+    #ftp-client:
+    #  image: ftp
+    #  container_name: ftp-client
+    #  working_dir: /work
+    #  volumes:
+    #    - .:/work
+    #  command: tail -f /dev/null
+    #  networks:
+    #    my_net:
+    #      ipv4_address: 172.26.0.2
 networks:
   my_net:
     driver: bridge
